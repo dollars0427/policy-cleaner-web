@@ -4,9 +4,10 @@ var cookieParser = require('cookie-parser');
 var log4js = require('log4js');
 var fs = require('fs');
 var nconf = require('nconf');
+nconf.file({ file: './config.json' });
 
-var access_log_path = nconf.get('access_log').path;
-var app_log_path = nconf.get('app_log').path;
+var access_log_path = nconf.get('log').access_log_path;
+var app_log_path = nconf.get('log').app_log_path;
 
 log4js.clearAppenders();
 log4js.loadAppender('file');
@@ -17,7 +18,7 @@ var logger = log4js.getLogger('APP_LOG');
 
 var app = new express();
 
-var router = require('./route.js');
+var router = require('./routes.js');
 
 var port = nconf.get('server').port;
 
