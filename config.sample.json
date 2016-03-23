@@ -1,0 +1,16 @@
+{
+    "server": {
+        "port": "3000",
+        "secret": "Use your own key!"
+    },
+
+    "token":{
+        "access_key":"your aws access key",
+        "access_secret":"your aws access key secret"
+    },
+
+    "log": {
+        "access_log_path": "/var/clear-policy/access_log",
+        "app_log_path": "/var/log/clear-policy/app_log"
+    }
+}
