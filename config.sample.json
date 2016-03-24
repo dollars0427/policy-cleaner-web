@@ -10,7 +10,7 @@
     },
 
     "log": {
-        "access_log_path": "/var/clear-policy/access_log",
-        "app_log_path": "/var/log/clear-policy/app_log"
+        "access_log_path": "/var/policy-cleaner/access.log",
+        "app_log_path": "/var/log/policy-cleaner/app.log"
     }
 }
