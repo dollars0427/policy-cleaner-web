@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var log4js = require('log4js');
 var fs = require('fs');
 var nconf = require('nconf');
-nconf.file({ file: './config.json' });
+nconf.file({ file: __dirname + '/config.json' });
 
 var access_log_path = nconf.get('log').access_log_path;
 var app_log_path = nconf.get('log').app_log_path;
