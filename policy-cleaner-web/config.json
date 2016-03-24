@@ -1,0 +1,16 @@
+{
+    "server": {
+        "port": "3000",
+        "secret": "Fm9HgjkpxWKg2umtZVGcFhC5w5hPX2"
+    },
+
+    "token":{
+        "access_key":"AKIAILGPSLN7S4FZ7QOQ",
+        "access_secret":"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"
+    },
+
+    "log": {
+        "access_log_path": "/var/log/policy-cleaner/access_log",
+        "app_log_path": "/var/log/policy-cleaner/app_log"
+    }
+}

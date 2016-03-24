@@ -25,6 +25,9 @@ var port = nconf.get('server').port;
 var secert = nconf.get('server').secret;
 
 app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
 app.use(log4js.connectLogger(log4js.getLogger('ACCESS_LOG'), {
     level: 'auto'

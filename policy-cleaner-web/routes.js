@@ -5,7 +5,7 @@ var logger = log4js.getLogger('Routes');
 
 var router = express.Router();
 
-function policyList(){
+function policyList(req, res){
 
     res.render('Hello!');
 
