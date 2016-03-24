@@ -7,7 +7,7 @@ var router = express.Router();
 
 function policyList(req, res){
 
-    res.render('Hello!');
+    res.render('policylist');
 
 }
 
