@@ -8,6 +8,7 @@
 <title>Policy Cleaner</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -19,44 +20,46 @@
 
 <div class="container">
 
-    Type:
+    <div class="center">
 
-    <select>
-        <option>All</option>
-        <option>AWS</option>
-        <option>Local</option>
-    </select>
+        Type:
 
-    <br><br><br>
+        <select>
+            <option>All</option>
+            <option>AWS</option>
+            <option>Local</option>
+        </select>
 
-      <table class="table table-bordered">
+    </div>
+
+    <table class="table table-bordered" id="policies">
         <thead>
           <tr>
             <th>Policy Name</th>
             <th>Createion time</th>
-            <th>Edited Time</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Test</td>
-            <td>2016-02-16</td>
-            <td>2016-02-16</td>
-            <td><input type="checkbox" name="myTextEditBox"></td>
-          </tr>
-          <tr>
-            <td>Mary</td>
-            <td>2016-02-16</td>
-            <td>2016-02-16</td>
-            <td><input type="checkbox" name="myTextEditBox"></td>
-          </tr>
-          <tr>
-            <td>July</td>
-            <td>2016-02-16</td>
-            <td>2016-02-16</td>
-            <td><input type="checkbox" name="myTextEditBox"></td>
-          </tr>
+
+        <% policies.forEach(function(policy){ %>
+
+            <tr>
+
+            <td>
+                <%= policy.policyName %>
+            </td>
+            <td>
+                <%= policy.createDate %>
+            </td>
+
+            <td>
+                <input type="checkbox" name="policy" id="<%= policy.policyrArn %>">
+            </td>
+
+        </tr>
+
+    <% }); %>
         </tbody>
     </table>
 
@@ -72,7 +75,9 @@
 
     </div>
 
-  </div>
+</div>
+
+<br><br><br>
 
 <footer class="footer">
     <div class="container">
@@ -80,14 +85,19 @@
     </div>
 </footer>
 
-<script src="/static/js/jquery-2.1.4.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"> </script>
+
+<script>
+
+$(document).ready(function(){
+        $('#policies').DataTable();
+        });
+
+</script>
 
 </body>
 
 </html>
 
-</body>
-
-
-</html>
