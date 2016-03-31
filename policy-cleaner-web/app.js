@@ -43,6 +43,8 @@ app.use('/', router);
 
 var listen = app.listen(port);
 
+console.log('Policy Cleaner is now running on port '+ port + '∠( ᐛ 」∠)＿');
+
 logger.info('Policy Cleaner is now running on port '+ port + '∠( ᐛ 」∠)＿');
 
 module.exports = app;
