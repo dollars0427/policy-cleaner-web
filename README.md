@@ -58,6 +58,62 @@ Usage
 ```bash
 $ node app.js
 ```
+Unit Test
+
+You can run the unit-test of this project by using nodeunit.
+
+1.Switch to the test directory . It is in the root directory of project.
+
+cd ./test
+
+2.Install the dependencies:
+
+npm install
+
+3.Copy the configuration file and edit it:
+
+$ cp ./config/setting.example.json setting.json
+$ vi setting.json
+
+```json
+{
+    "token":{
+        "access_key":"Your aws access key",
+        "access_secret":"Your aws access secret"
+    },  
+
+    "policy":{
+        "policy_name":"The name of test policy"
+    }   
+}
+```
+
+4.Edit the policy document file for testing:
+$ cp ./config/document.example.json document.json
+$ vi document.json
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [{
+        "Sid": "Stmt1444985677000",
+        "Effect": "Allow",
+        "Action": [
+            "s3:*"
+        ],
+        "Resource": [
+            "arn:aws:s3:::test",
+            "arn:aws:s3:::test/*",
+        ]
+    }]  
+}
+
+```
+
+5.Run nodeunit to test each part:
+
+#This is just an example!
+nodeunit testcase.js
 
 BUG
 ---
