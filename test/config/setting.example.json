@@ -1,0 +1,10 @@
+{
+    "token":{
+        "access_key":"Your aws access key",
+        "access_secret":"Your aws access secret"
+    },
+
+    "policy":{
+        "policy_name":"The name of test policy"
+    }
+}

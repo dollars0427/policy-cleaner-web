@@ -1,0 +1,13 @@
+{
+    "name": "policy-cleaner-web",
+    "description": "The unit test of policy cleaner",
+    "version": "0.0.1",
+    "author": "Sardo Ip<sardo.ip@sardo.work>",
+    "dependencies": {
+        "log4js":"0.6.26",
+        "nconf":"0.7.1",
+        "aws-sdk":"2.2.45",
+        "readline-sync":"1.4.1"
+    },
+    "license": "Apache-2.0"
+}
