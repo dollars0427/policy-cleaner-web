@@ -5,7 +5,7 @@ var nconf = require('nconf');
 
 var policy = require(__dirname + '/lib/policy');
 
-var logger = log4js.getLogger('Routes');
+var logger = log4js.getLogger('APP_LOG');
 var router = express.Router();
 
 var accessKey = nconf.get('token').access_key;
@@ -13,9 +13,9 @@ var accessSecert = nconf.get('token').access_secret;
 
 aws.config.update({accessKeyId:accessKey, secretAccessKey:accessSecert});
 
-function policyList(req, res){
+var iam = new aws.IAM();
 
-    var iam = new aws.IAM();
+function policyList(req, res){
 
     var params = {
         Scope:'All'
@@ -35,25 +35,63 @@ function policyList(req, res){
 
 function deletePolicies(req, res){
 
-    var policies = req.body.policies;
+    var postParams = 'policies[]'
 
-    for(var i = 0; i < policies.length; i++;){
+    var policies = req.body[postParams];
 
-        var policyArn = policies[i].policyArn;
+    if(_checkArray(policies)){
+        
+        var datas = [];
+        
+        for(var i = 0; i < policies.length; i++){
 
-        var params = {PolicyArn:policyArn};
+            var policyArn = policies[i];
 
-        policy.deletePolicies(params, function(err){
+            var params = {PolicyArn:policyArn};
 
-            if(err){
-                logger.error(err, err.stack);
-                return;
-            }
+            policy.deletePolicy(iam, params, function(err, data){
 
-            logger.info(policies[i].PolicyName + ' Deleted!');
+                if(err){
+                    logger.error(err, err.stack);
+                    res.send({
+                        error: err
+                    });
+                    return;
+                }
 
-        });
+                logger.info(data);
+                
+                datas.push(data);
+            });
+            
+        }
+        
+        res.send({datas:datas});
+
+        return;
     }
+
+    var policyArn = policies;
+
+    var params = {PolicyArn:policyArn};
+
+    policy.deletePolicy(iam, params, function(err, data){
+
+        if(err){
+            logger.error(err, err.stack);
+            res.send({
+                error: err
+            });
+            return;
+        }
+
+        logger.info(data);
+        res.send({data:data});
+    });
+}
+
+function _checkArray(val){
+     return(Object.prototype.toString.call(val)=== '[object Array]');
 }
 
 router.get('/', policyList);
