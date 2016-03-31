@@ -52,7 +52,7 @@ function deletePolicy(iam, params, cb){
             return;
         }
 
-        cb(null);
+        cb(null, data);
 
     });
 }
@@ -60,6 +60,6 @@ function deletePolicy(iam, params, cb){
 
 
 module.exports = {
-    getPolicies:getPolicies
+    getPolicies:getPolicies,
     deletePolicy:deletePolicy
 }
