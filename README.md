@@ -71,9 +71,10 @@ cd ./test
 npm install
 
 3.Copy the configuration file and edit it:
-
+```bash
 $ cp ./config/setting.example.json setting.json
 $ vi setting.json
+```
 
 ```json
 {
@@ -89,8 +90,11 @@ $ vi setting.json
 ```
 
 4.Edit the policy document file for testing:
+
+```bash
 $ cp ./config/document.example.json document.json
 $ vi document.json
+```
 
 ```json
 {
@@ -111,9 +115,9 @@ $ vi document.json
 ```
 
 5.Run nodeunit to test each part:
-
-#This is just an example!
+```bash
 nodeunit testcase.js
+```
 
 BUG
 ---
