@@ -20,18 +20,6 @@
 
 <div class="container">
 
-    <div class="center">
-
-        Type:
-
-        <select>
-            <option>All</option>
-            <option>AWS</option>
-            <option>Local</option>
-        </select>
-
-    </div>
-
     <table class="table table-bordered" id="policies">
         <thead>
           <tr>
@@ -54,7 +42,7 @@
             </td>
 
             <td>
-                <input type="checkbox" name="policy" id="<%= policy.policyrArn %>">
+                <input type="checkbox" name="policies[]" value="<%= policy.policyArn %>">
             </td>
 
         </tr>
@@ -67,11 +55,7 @@
 
     <div class="center">
 
-        Clear All &nbsp;&nbsp; <input type="checkbox" id="clear-all" > 
-
-        <br><br><br>
-
-        <a class="btn btn-danger" href="/clear">Clean</a>
+        <button class="btn btn-danger" id="button-clean">Clean</a>
 
     </div>
 
@@ -95,9 +79,34 @@ $(document).ready(function(){
         $('#policies').DataTable();
         });
 
+        $("#button-clean").click(function() {
+
+      			var vals = [];
+
+      			$('input:checkbox[name="policies[]"]').each(function() {
+      				if (this.checked) {
+      					vals.push(this.value);
+                        }});
+                
+                $.ajax({
+      				type: 'POST',
+      				url: "/delete",
+      				data: {
+      					'policies': vals,
+      				},
+      				success: function() {
+      					$(document).ajaxStop(function(){
+      						window.location.reload();
+      					});
+      				},
+      				error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+      				}
+      			});
+      		});
+
 </script>
 
 </body>
 
 </html>
-
